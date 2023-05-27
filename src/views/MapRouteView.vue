@@ -37,7 +37,6 @@ import Weather from '@/components/Weather.vue';
 import Header from '@/components/Header.vue';
 import RouteCard from '@/components/RouteCard.vue';
 
-
 let AMap = null;
 
 export default {
@@ -50,7 +49,8 @@ export default {
                 { route: '/Home', name: '主页' },
                 { route: '/Search', name: '搜索' },
                 { route: '/Map', name: '地图' },
-                { route: '/Feedback', name: '上传测试' },
+                { route: '/MapSearch', name: '周边搜索' },
+                { route: '/Feedback', name: '我的发现' },
                 { route: '/User', name: '个人中心' }
             ],
             RouteList: [
@@ -62,7 +62,7 @@ export default {
                     months: '2-3月',
                     region: '武昌区、汉阳区、江岸区',
                     distance: '13km',
-                    drive_time: '37min',
+                    time: '37min',
                     description: '适合春天来此路线游览赏花',
                     paths: [
                         { position: [114.32082, 30.54022], name: '长春观', note: '玉兰花' },
@@ -79,7 +79,7 @@ export default {
                     months: '3-4月',
                     region: '东西湖区、硚口区、江汉区、江岸区',
                     distance: '22km',
-                    drive_time: '60min',
+                    time: '60min',
                     description: '适合春天来此路线游览赏花',
                     paths: [
                         { position: [114.187354, 30.641473], name: '金银湖国家湿地公园', note: '绣球花' },
@@ -96,7 +96,7 @@ export default {
                     months: '3月',
                     region: '洪山区',
                     distance: '12km',
-                    drive_time: '32min',
+                    time: '32min',
                     description: '适合春天来此路线游览赏花',
                     paths: [
                         { position: [114.399174, 30.493868], name: '关山荷兰风情园', note: '郁金香' },
@@ -113,7 +113,7 @@ export default {
                     months: '3-4月',
                     region: '洪山区、武昌区',
                     distance: '27km',
-                    drive_time: '59min',
+                    time: '59min',
                     description: '适合春天来此路线游览赏花',
                     paths: [
                         { position: [114.355923, 30.472223], name: '华中农业大学', note: '油菜花、樱花、玉兰花' },
@@ -130,7 +130,7 @@ export default {
                     months: '4-5月',
                     region: '武昌区、青山区、江岸区',
                     distance: '33km',
-                    drive_time: '73min',
+                    time: '73min',
                     description: '适合春天来此路线游览赏花',
                     paths: [
                         { position: [114.351107, 30.572224], name: '沙湖公园', note: '绣球花' },
@@ -147,7 +147,7 @@ export default {
                     months: '3-4月',
                     region: '东西湖区、蔡甸区',
                     distance: '47km',
-                    drive_time: '45min',
+                    time: '45min',
                     description: '适合春天来此路线游览赏花',
                     paths: [
                         { position: [114.085182, 30.704151], name: '郁金香主题公园', note: '郁金香' },
@@ -162,7 +162,7 @@ export default {
                     months: '5月',
                     region: '黄陂区',
                     distance: '80km',
-                    drive_time: '100min',
+                    time: '100min',
                     description: '适合春天来此路线游览赏花',
                     paths: [
                         { position: [114.213185, 31.12363], name: '木兰云雾山', note: '杜鹃花' },
@@ -178,7 +178,7 @@ export default {
                     months: '3月',
                     region: '江汉区、东西湖区、江岸区',
                     distance: '29km',
-                    drive_time: '68min',
+                    time: '68min',
                     description: '在樱花溪、王家墩，欣赏美丽的樱花；在西北湖绿化广场，沿途欣赏绿树成荫的景色。前往汉口江滩，在长江畔感受历史文化氛围。',
                     paths: [
                         { position: [114.130359, 30.648231], name: '樱花溪公园', note: '樱花' },
@@ -194,8 +194,8 @@ export default {
                 flowerType: '梅花、玉兰',
                 months: '2-3月',
                 region: '武昌区、汉阳区、江岸区',
-                distance: '13km',
-                drive_time: '37min',
+                distance: '',
+                time: '',
                 description: '适合春天来此路线游览赏花',
                 paths: [
                     { position: [114.32082, 30.54022], name: '长春观', note: '玉兰花' },
@@ -204,6 +204,7 @@ export default {
                     { position: [114.284332, 30.597736], name: '宝岛公园', note: '玉兰花' },
                 ]
             },
+            route: null
         }
     },
     computed: {
@@ -230,7 +231,7 @@ export default {
                 AMap = map
                 this.map = new AMap.Map('container', {
                     //center: MY_POSITION,
-                    zoom: 8
+                    zoom: 11
                 })
                 // this.map.addControl(new AMap.ToolBar())
                 this.map.addControl(new AMap.Scale())
@@ -250,6 +251,7 @@ export default {
                 })
                 this.map.addControl(geolocation)
                 this.loadLine(this.map, this.activeLineObj)
+                this.loadLineLabels(this.map, this.activeLineObj)
             }).catch(e => {
                 console.log(e);
             })
@@ -257,36 +259,38 @@ export default {
         },
         // 载入路线信息
         loadLine(map, line) {
+            if (this.route) {
+                this.route.destroy()
+            }
             let path = line.paths.map(item => item.position)
-            let route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE, {
+            this.route = new AMap.DragRoute(map, path, AMap.DrivingPolicy.LEAST_FEE, {
                 startMarkerOptions: {
                     offset: new AMap.Pixel(-16, -32),
                     icon: new AMap.Icon({ // 设置起点的图标
                         size: new AMap.Size(32, 32),
-                        image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/%E8%B5%B7%E7%82%B9.png',
-                        imageSize: new AMap.Size(20, 20),
+                        image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/startpoint.png',
+                        imageSize: new AMap.Size(32, 32),
                     }),
                 },
                 endMarkerOptions: {
                     offset: new AMap.Pixel(-16, -32),
                     icon: new AMap.Icon({ // 设置终点的图标
                         size: new AMap.Size(32, 32),
-                        image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/%E7%BB%88%E7%82%B9%20(1).png',
-                        imageSize: new AMap.Size(20, 20),
+                        image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/endpoint.png',
+                        imageSize: new AMap.Size(32, 32),
                     }),
                 },
                 midMarkerOptions: {
                     offset: new AMap.Pixel(-10, -10),
                     icon: new AMap.Icon({ // 设置途经点的图标
                         size: new AMap.Size(20, 20),
-                        image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/%E9%80%94%E5%BE%84%E7%82%B9.png',
+                        image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/pink_transparent_1.png',
                         imageSize: new AMap.Size(20, 20),
                     }),
                 },
             })
-
             // 路线规划完成后，返回的路线数据：设置距离、行驶时间
-            route.on('complete', res => {
+            this.route.on('complete', res => {
                 let lineData = res.data.routes[0]
                 let distance = (lineData.distance / 1000).toFixed(1) // m -> km
                 let time = (lineData.time / 60).toFixed() // second -> min
@@ -294,14 +298,16 @@ export default {
                 this.$set(this.activeLineObj, 'time', time)
             })
             // 查询导航路径并开启拖拽导航
-            route.search()
+            this.route.search()
         },
         clickRoute(row) {
             this.selectrow = row.index;
             this.RouteList.forEach((route) => {
                 if (route.index == row.index) {
+                    this.map.clearMap()
                     this.activeLineObj = route
                     this.loadLine(this.map, this.activeLineObj)
+                    this.loadLineLabels(this.map, this.activeLineObj)
                 }
             });
         },
@@ -311,7 +317,23 @@ export default {
             }
             return { cursor: 'pointer' };
         },
-    }
+        loadLineLabels(map, line) {
+            line.paths.forEach(item => {
+                this.addMarker(map, item)
+            })
+        },
+        addMarker(map, item) {
+            let marker = new AMap.Marker({
+                position: item.position,
+                content: `
+               <div class="marker">
+                  <div class="maker-title"><h6>${item.name}</h5></div>
+                  <div class="maker-p"><p><b>花种：</b>${item.note}</p></div>
+               </div>`
+            });
+            map.add(marker);
+        }
+    },
 }
 </script>
 
@@ -374,5 +396,30 @@ h6 {
     background: 0 0;
     border-top: 1px solid #e8eaec;
     margin-top: 0px;
+}
+
+>>>.marker {
+    width: max-content;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding:5px;
+    
+}
+
+>>>.marker h6 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    margin-bottom: 3px;
+
+}
+
+>>>.marker p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+
+>>>.marker:hover {
+  transform: translateY(-3px) scale(1.1);
 }
 </style>

@@ -3,17 +3,13 @@ import VueRouter from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
 
-
-//import NavigationView from '../views/NavigationView.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
   {
-    //这里需要将根目录默认为Home，方便实现用户在保持登录状态下再次登录时直接跳转至主页面
     path: "/",
     redirect: {
-      name: "Login"
+      name: "Home"
     }
   },
   {
@@ -55,6 +51,11 @@ const routes = [
     path: "/User",
     name: "User",
     component: resolve => require(['../views/profile/index.vue'], resolve),
+  },
+  {
+    path: "/MapSearch",
+    name: "MapSearch",
+    component: resolve => require(['../views/MapSearchView.vue'], resolve),
   }
 ]
 
@@ -65,10 +66,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   //登录及注册页面可以直接进入,而主页面需要分情况
-  localStorage.s === "false"
   if (to.path == '/Login') {
     next();
-    console.log(localStorage.s);
   }
   else {
     if (from.path == "/Login")//从登录页面可以直接通过登录进入主页面
@@ -77,14 +76,12 @@ router.beforeEach((to, from, next) => {
     }
     else {
       //从/进入,如果登录状态是true，则直接next进入主页面
-      if (localStorage.s === "true") {
+      if (sessionStorage['s'] === "true") {
         next();
-        console.log(localStorage['s'])
       }
       else {
         //如果登录状态是false，那么跳转至登录页面,需要登录才能进入主页面
         next('/Login');
-        console.log("需要登录")
       }
     }
   }

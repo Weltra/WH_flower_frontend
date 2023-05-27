@@ -48,6 +48,7 @@ export default {
                 { route: '/Home', name: '主页' },
                 { route: '/Search', name: '搜索' },
                 { route: '/Map', name: '地图' },
+                { route: '/MapSearch', name: '周边搜索' },
                 { route: '/Route', name: '路线展示' },
                 { route: '/User', name: '个人中心' }
             ],
@@ -124,7 +125,9 @@ export default {
             }
         },
         handleError(err) {
-            this.$message.error('上传失败！');
+            if (err) {
+                this.$message.error('上传失败！');
+            }
         },
         // 上传图片
         async fnUploadRequest(options) {

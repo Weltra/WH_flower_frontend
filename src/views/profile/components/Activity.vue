@@ -2,7 +2,8 @@
   <div class="user-activity">
     <div class="post">
       <div class="user-block">
-        <img class="img-circle" :src="'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/avatars/20230514144252.png' + avatarPrefix">
+        <img class="img-circle"
+          :src="'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/avatars/20230514144252.png' + avatarPrefix">
         <span class="username">welt</span>
         <span class="description">为你推荐的赏花点</span>
       </div>
@@ -15,10 +16,7 @@
       </div>
       <ul class="list-inline">
         <li><span class="link-black text-sm"><i class="el-icon-share"></i> Share</span></li>
-        <li>
-          <span class="link-black text-sm">
-            <svg-icon icon-class="like" /> Like</span>
-        </li>
+        <li><span class="link-black text-sm"><i class="el-icon-star-off"></i> Like</span></li>
       </ul>
     </div>
   </div>
@@ -45,7 +43,6 @@ export default {
 <style lang="scss" scoped>
 .user-activity {
   .user-block {
-
     .username,
     .description {
       display: block;

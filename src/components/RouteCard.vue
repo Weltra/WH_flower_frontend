@@ -1,12 +1,12 @@
 <template>
     <article class="route-info">
         <section class="Route-info__half upper">
-            <h5>{{ activeLineObj.name }}</h5>
+            <h1>{{ activeLineObj.name }}</h1>
             <div class="route-info__content">
                 <table>
                     <tbody>
                         <tr>
-                            <h6>{{ activeLineObj.recommend }}</h6>
+                            <h2>{{ activeLineObj.recommend }}</h2>
                         </tr>
                         <tr>
                             <el-divider></el-divider>
@@ -29,7 +29,7 @@
                         </tr>
                         <tr>
                             <td>驾车时间：</td>
-                            <td>{{ activeLineObj.drive_time }}</td>
+                            <td>{{ activeLineObj.time }}min</td>
                         </tr>
                         <tr>
                             <el-divider></el-divider>
@@ -157,12 +157,13 @@ export default {
 }
 
 h1 {
-    margin: 10px 0 20px;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
 }
 
-h1.page-title {
-    text-align: center;
-    margin-bottom: 60px;
+h2 {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
 }
 
 p {
@@ -242,14 +243,5 @@ td {
 
 .route-note p {
     font-size: 13px;
-}
-
-h5 {
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 18px;
-}
-
-h6 {
-    color: rgba(0, 0, 0, 0.6);
 }
 </style>

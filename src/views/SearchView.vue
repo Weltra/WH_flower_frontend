@@ -4,16 +4,17 @@
     <body>
       <header class="page-header">
         <div class="site-name">
-          <img src="../assets/logo1.png" class="logo">
+          <img src="../assets/logo.png" class="logo">
         </div>
         <div class="menu-container">
           <nav>
             <ul class="menu" role="list" style="list-style-type:none">
               <li><router-link to="/Home"><a>主页</a></router-link></li>
               <li><router-link to="/Map"><a>地图</a></router-link></li>
-              <li><router-link to="/Feedback"><a>上传测试</a></router-link></li>
+              <li><router-link to="/Feedback"><a>我的发现</a></router-link></li>
               <li><router-link to="/Route"><a>路线展示</a></router-link></li>
-              <li><router-link to="/User"><a style="font-size: 18px;"><i class="el-icon-user-solid"></i></a></router-link></li>
+              <li><router-link to="/User"><a style="font-size: 18px;"><i class="el-icon-user-solid"></i></a></router-link>
+              </li>
             </ul>
           </nav>
         </div>
@@ -23,7 +24,7 @@
               <button class="magnifier material-icons" @click="search">
                 <span>search</span>
               </button>
-              <input type="text" placeholder="Search for anything" v-model="searchText" style="background-color: white">
+              <input type="text" placeholder="搜索赏花点名称或花卉品种" v-model="searchText" style="background-color: white">
               <button class="magnifier material-icons" @click="search">
                 <span>search</span>
               </button>
@@ -34,15 +35,18 @@
 
       <main>
         <ul>
-          <li v-for="item in filteredItems" :key="item.id" class="skeleton">
+          <li v-for="item in items" :key="item.id" class="skeleton">
             <div class="skeleton__block">
-              <img :src="item.imgUrl" alt="" />
+              <img :src="item.imgURL" alt="" />
             </div>
             <div class="skeleton__block">
-              <h3>{{ item.title }}</h3>
+              <h3>{{ item.name }}</h3>
+              <p><b><i class="el-icon-map-location"></i>位置：</b>{{ item.description }}</p>
             </div>
             <div class="skeleton__block">
-              <p>{{ item.description }}</p>
+              <p><b><i class="el-icon-money"></i>门票价格：</b>{{ item.ticket }}</p>
+              <p><b><i class="el-icon-time"></i>开放时间：</b>{{ item.open_time }}</p>
+              <p><b><i class="el-icon-picture-outline-round"></i>花卉品种：</b>{{ item.flower_class }}</p>
             </div>
           </li>
         </ul>
@@ -57,79 +61,43 @@ export default ({
     return {
       searchText: '',
       items: [
-        {
-          id: 1,
-          title: 'Item 1',
-          imgUrl: 'https://images.unsplash.com/photo-1446482972539-0ed52b3e9520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFuZHNjYXBlfHx8fHx8MTY2NDA0NjcxMg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
-          description: 'This is item 1',
-        },
-        {
-          id: 2,
-          title: 'Item 2',
-          imgUrl: 'https://images.unsplash.com/photo-1446482972539-0ed52b3e9520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFuZHNjYXBlfHx8fHx8MTY2NDA0NjcxMg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
-          description: 'This is item 2',
-        },
-        {
-          id: 3,
-          title: 'Item 3',
-          imgUrl: 'https://images.unsplash.com/photo-1446482972539-0ed52b3e9520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFuZHNjYXBlfHx8fHx8MTY2NDA0NjcxMg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
-          description: 'This is item 3',
-        },
-        {
-          id: 4,
-          title: 'Item 3',
-          imgUrl: 'https://images.unsplash.com/photo-1446482972539-0ed52b3e9520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFuZHNjYXBlfHx8fHx8MTY2NDA0NjcxMg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
-          description: 'This is item 3',
-        },
-        {
-          id: 5,
-          title: 'Item 3',
-          imgUrl: 'https://images.unsplash.com/photo-1446482972539-0ed52b3e9520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFuZHNjYXBlfHx8fHx8MTY2NDA0NjcxMg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
-          description: 'This is item 3',
-        },
-        {
-          id: 6,
-          title: 'Item 3',
-          imgUrl: 'https://images.unsplash.com/photo-1446482972539-0ed52b3e9520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFuZHNjYXBlfHx8fHx8MTY2NDA0NjcxMg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
-          description: 'This is item 3',
-        },
-        {
-          id: 7,
-          title: 'Item 3',
-          imgUrl: 'https://images.unsplash.com/photo-1446482972539-0ed52b3e9520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFuZHNjYXBlfHx8fHx8MTY2NDA0NjcxMg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
-          description: 'This is item 3',
-        },
-        {
-          id: 8,
-          title: 'Item 3',
-          imgUrl: 'https://images.unsplash.com/photo-1446482972539-0ed52b3e9520?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFuZHNjYXBlfHx8fHx8MTY2NDA0NjcxMg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500',
-          description: 'This is item 3',
-        },
       ],
+      keywords: []
     };
   },
+  created() {
+    this.$axios.get('http://127.0.0.1:8000/map_points/', {
+    }).then((res) => {
+      this.items = res.data.Points
+    }).catch(err => {
+      console.log(err);
+      this.$message.error('加载失败，请检查网络！');
+    })
+  },
   computed: {
-    filteredItems() {
-      if (!this.searchText) {
-        return this.items
-      }
-      else {
-        let lowerCaseSearchText = this.searchText.toLowerCase()
-        return this.items.filter(item => {
-          return item.title.toLowerCase().includes(lowerCaseSearchText)
-        })
-      }
-    }
   },
   methods: {
+    wordsCut(manage) {
+      let words = manage.split(",")
+      return words
+    },
     search() {
-      console.log('搜索：', this.searchText)
+      this.keywords = this.searchText.split(' ')
+      this.$axios.post('http://127.0.0.1:8000/search_points/', this.keywords).then((res) => {
+        this.items = res.data.Points
+        this.$message({
+          message: '搜索成功！',
+          type: 'success'
+        });
+      }).catch(err => {
+        console.log(err);
+        this.$message.error('搜索失败，请检查网络！');
+      })
     },
   },
   mounted() {
     const header = document.getElementById("page-header");
     const intercept = document.createElement("div");
-
     intercept.setAttribute("data-observer-intercept", "");
     header.before(intercept);
 
@@ -188,7 +156,6 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
-  /*padding: 2rem clamp(1rem, 4vw, 2rem);*/
   background-color: white;
   transition: box-shadow 200ms cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -322,9 +289,13 @@ ul {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.skeleton__block h3 {
+  font-size: 30px;
+}
+
 .skeleton__block {
   background: var(--block);
-  background-color: aliceblue;
+  background-color: rgba(240, 248, 255, 0.3);
 }
 
 .skeleton__block:first-of-type {
@@ -333,6 +304,6 @@ ul {
 }
 
 .skeleton__block:last-of-type {
-  width: 65%;
+  margin-top: 0;
 }
 </style>

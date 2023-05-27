@@ -1,7 +1,7 @@
 <template>
   <header id="page-header">
     <div class="site-name">
-      <img src="../assets/logo1.png" class="logo">
+      <img src="../assets/logo.png" class="logo">
     </div>
     <nav>
       <ul class="menu" role="list" style="list-style-type:none">

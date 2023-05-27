@@ -1,0 +1,79 @@
+Date : 2023-05-26 23:46:10
+Directory : d:\WH_Flower\frontend
+Total : 36 files,  17781 codes, 165 comments, 457 blanks, all 18403 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          2 |     13,096 |          0 |          2 |     13,098 |
+| Vue                |         21 |      4,406 |        139 |        419 |      4,964 |
+| JavaScript         |         10 |        219 |         13 |         24 |        256 |
+| HTML               |          1 |         33 |          1 |          6 |         40 |
+| Markdown           |          1 |         19 |          0 |          6 |         25 |
+| JSON with Comments |          1 |          8 |         12 |          0 |         20 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                            | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                               |         36 |     17,781 |        165 |        457 |     18,403 |
+| . (Files)                                                       |          7 |     13,139 |         12 |         12 |     13,163 |
+| public                                                          |          1 |         33 |          1 |          6 |         40 |
+| src                                                             |         28 |      4,609 |        152 |        439 |      5,200 |
+| src (Files)                                                     |          2 |         34 |          0 |         10 |         44 |
+| src\components                                                  |          7 |      1,341 |         46 |        119 |      1,506 |
+| src\requests                                                    |          1 |         13 |          0 |          0 |         13 |
+| src\router                                                      |          1 |         82 |          3 |          5 |         90 |
+| src\store                                                       |          1 |         22 |          0 |          3 |         25 |
+| src\utils                                                       |          3 |         67 |         10 |          6 |         83 |
+| src\views                                                       |         13 |      3,050 |         93 |        296 |      3,439 |
+| src\views (Files)                                               |          9 |      2,554 |         92 |        241 |      2,887 |
+| src\views\profile                                               |          4 |        496 |          1 |         55 |        552 |
+| src\views\profile (Files)                                       |          1 |        168 |          0 |         16 |        184 |
+| src\views\profile\components                                    |          3 |        328 |          1 |         39 |        368 |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                        | language           | code       | comment    | blank      | total      |
++-----------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| d:\WH_Flower\frontend\README.md                                 | Markdown           |         19 |          0 |          6 |         25 |
+| d:\WH_Flower\frontend\babel.config.js                           | JavaScript         |          5 |          0 |          1 |          6 |
+| d:\WH_Flower\frontend\jsconfig.json                             | JSON with Comments |          8 |         12 |          0 |         20 |
+| d:\WH_Flower\frontend\mapConfig.js                              | JavaScript         |          3 |          0 |          1 |          4 |
+| d:\WH_Flower\frontend\package-lock.json                         | JSON               |     13,027 |          0 |          1 |     13,028 |
+| d:\WH_Flower\frontend\package.json                              | JSON               |         69 |          0 |          1 |         70 |
+| d:\WH_Flower\frontend\public\index.html                         | HTML               |         33 |          1 |          6 |         40 |
+| d:\WH_Flower\frontend\src\App.vue                               | Vue                |         15 |          0 |          4 |         19 |
+| d:\WH_Flower\frontend\src\components\AvatarUpload.vue           | Vue                |        236 |          8 |          9 |        253 |
+| d:\WH_Flower\frontend\src\components\Comment.vue                | Vue                |        392 |         18 |         33 |        443 |
+| d:\WH_Flower\frontend\src\components\Header.vue                 | Vue                |         74 |          0 |          8 |         82 |
+| d:\WH_Flower\frontend\src\components\Heart.vue                  | Vue                |        145 |         17 |         14 |        176 |
+| d:\WH_Flower\frontend\src\components\MapCard.vue                | Vue                |        110 |          0 |         15 |        125 |
+| d:\WH_Flower\frontend\src\components\RouteCard.vue              | Vue                |        219 |          0 |         28 |        247 |
+| d:\WH_Flower\frontend\src\components\Weather.vue                | Vue                |        165 |          3 |         12 |        180 |
+| d:\WH_Flower\frontend\src\main.js                               | JavaScript         |         19 |          0 |          6 |         25 |
+| d:\WH_Flower\frontend\src\requests\axios.js                     | JavaScript         |         13 |          0 |          0 |         13 |
+| d:\WH_Flower\frontend\src\router\index.js                       | JavaScript         |         82 |          3 |          5 |         90 |
+| d:\WH_Flower\frontend\src\store\index.js                        | JavaScript         |         22 |          0 |          3 |         25 |
+| d:\WH_Flower\frontend\src\utils\clipboard.js                    | JavaScript         |         29 |          0 |          4 |         33 |
+| d:\WH_Flower\frontend\src\utils\oss.js                          | JavaScript         |         38 |         10 |          1 |         49 |
+| d:\WH_Flower\frontend\src\utils\request.js                      | JavaScript         |          0 |          0 |          1 |          1 |
+| d:\WH_Flower\frontend\src\views\AbstractView.vue                | Vue                |        234 |          3 |         31 |        268 |
+| d:\WH_Flower\frontend\src\views\FeedbackView.vue                | Vue                |        206 |          6 |         24 |        236 |
+| d:\WH_Flower\frontend\src\views\HomeView.vue                    | Vue                |        164 |          0 |         19 |        183 |
+| d:\WH_Flower\frontend\src\views\LoginView.vue                   | Vue                |        420 |          8 |         53 |        481 |
+| d:\WH_Flower\frontend\src\views\MapCardView.vue                 | Vue                |        348 |         15 |         21 |        384 |
+| d:\WH_Flower\frontend\src\views\MapRouteView.vue                | Vue                |        388 |         13 |         25 |        426 |
+| d:\WH_Flower\frontend\src\views\MapSearchView.vue               | Vue                |        415 |         41 |         30 |        486 |
+| d:\WH_Flower\frontend\src\views\OSSUpload.vue                   | Vue                |         99 |          6 |          9 |        114 |
+| d:\WH_Flower\frontend\src\views\SearchView.vue                  | Vue                |        280 |          0 |         29 |        309 |
+| d:\WH_Flower\frontend\src\views\profile\components\Account.vue  | Vue                |         49 |          0 |          2 |         51 |
+| d:\WH_Flower\frontend\src\views\profile\components\Activity.vue | Vue                |        107 |          0 |         18 |        125 |
+| d:\WH_Flower\frontend\src\views\profile\components\UserCard.vue | Vue                |        172 |          1 |         19 |        192 |
+| d:\WH_Flower\frontend\src\views\profile\index.vue               | Vue                |        168 |          0 |         16 |        184 |
+| d:\WH_Flower\frontend\vue.config.js                             | JavaScript         |          8 |          0 |          2 |         10 |
+| Total                                                           |                    |     17,781 |        165 |        457 |     18,403 |
++-----------------------------------------------------------------+--------------------+------------+------------+------------+------------+

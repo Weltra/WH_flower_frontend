@@ -1,19 +1,19 @@
 <template>
     <div class="mapcard" v-if="showcard">
         <div class="title-c">
-            <h2>{{ selectedPoint.title }}</h2>
+            <h2>{{ selectedPoint.name }}</h2>
         </div>
         <input id="toggle" type="checkbox" checked>
         <label for="toggle">展开/隐藏图片</label>
         <div id="expand">
-            <img :src="selectedPoint.imgUrl" alt="" class="thumbnail">
+            <img :src="selectedPoint.imgURL" alt="" class="thumbnail">
         </div>
         <section>
-            <p><b>📍地点<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.subtitle }}</p>
-            <p><b>🕓开放时间<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.opentime }}</p>
+            <p><b>📍地点<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.description }}</p>
+            <p><b>🕓开放时间<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.open_time }}</p>
             <p><b>🎫门票价格<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.ticket }}</p>
-            <p><b>🌷花卉品种<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.flowertype }}</p>
-            <p><b>🚗交通<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.flowertype }}</p>
+            <p><b>🌷花卉品种<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.flower_class }}</p>
+            <p><b>🚗交通<el-divider direction="vertical"></el-divider></b>{{ selectedPoint.traffic }}</p>
         </section>
     </div>
 </template>

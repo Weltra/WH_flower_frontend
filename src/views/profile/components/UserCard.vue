@@ -1,13 +1,12 @@
 <template>
   <el-card style="margin-bottom:20px;">
-    <div slot="header" class="clearfix">
-      <span>About me</span>
+    <div slot="header" class="clearfixC">
+      <span>Personal Center</span>
     </div>
 
     <div class="user-profile">
       <div class="box-center">
-        <el-avatar :size="100"
-          :src="user.avatar"></el-avatar>
+        <el-avatar :size="100" :src="user.avatar"></el-avatar>
       </div>
       <div class="box-center">
         <div class="user-name text-center">{{ user.name }}</div>
@@ -16,7 +15,7 @@
 
     <div class="user-bio">
       <div class="user-education user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>Welcome</span></div>
+        <div class="user-bio-section-header"><span>Welcome</span></div>
         <div class="user-bio-section-body">
           <div class="text-muted">
             欢迎来到美丽的江城武汉，赏花游览尽情畅享。
@@ -25,58 +24,93 @@
       </div>
 
       <div class="user-skills user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>Skills</span></div>
+        <div class="user-bio-section-header"><span>About Us</span></div>
         <div class="user-bio-section-body">
-          <div class="progress-item">
-            <span>Vue</span>
-            <el-progress :percentage="70" />
+          <div class="text-muted">
+            Whatever tattooed stumptown art party sriracha gentrify hashtag intelligentsia readymade
+            schlitz brooklyn disrupt.
           </div>
-          <div class="progress-item">
-            <span>JavaScript</span>
-            <el-progress :percentage="18" />
-          </div>
-          <div class="progress-item">
-            <span>Css</span>
-            <el-progress :percentage="12" />
-          </div>
-          <div class="progress-item">
-            <span>ESLint</span>
-            <el-progress :percentage="100" status="success" />
+          <div class="card-social">
+            <a @click="onPreview"><svg t="1684542118005" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="2427" width="128" height="128">
+                <path
+                  d="M992.896 624.448c0-133.824-131.008-242.368-292.608-242.368-161.6 0-292.608 108.48-292.608 242.368 0 133.952 131.008 242.432 292.608 242.432 37.376 0 73.024-6.016 105.792-16.576l92.224 50.496-24.32-81.344c0.32-0.192 0.704-0.32 1.024-0.512C946.56 774.656 992.896 704.064 992.896 624.448zM594.624 578.688c-21.696 0-39.168-17.6-39.168-39.168 0-21.632 17.472-39.168 39.168-39.168 21.568 0 39.104 17.536 39.104 39.168C633.728 561.088 616.192 578.688 594.624 578.688zM792.64 578.688c-21.632 0-39.104-17.6-39.104-39.168 0-21.632 17.472-39.168 39.104-39.168s39.168 17.536 39.168 39.168C831.808 561.088 814.272 578.688 792.64 578.688z"
+                  p-id="2428"></path>
+                <path
+                  d="M689.984 371.904c4.608 0 9.216 0.064 13.696 0.256-18.304-139.968-161.408-248.96-335.232-248.96-186.24 0-337.28 125.12-337.28 279.36 0 91.776 53.376 173.184 135.872 224.128 0.384 0.192 0.768 0.384 1.152 0.64l-27.968 93.76 106.24-58.24c37.888 12.16 78.912 19.072 121.984 19.072 13.504 0 26.816-0.704 39.936-2.048-7.04-20.8-10.944-42.816-10.944-65.536C397.376 480.384 528.448 371.904 689.984 371.904zM490.24 259.456c24.896 0 45.12 20.224 45.12 45.184 0 24.896-20.224 45.12-45.12 45.12-24.96 0-45.184-20.224-45.184-45.12C445.12 279.68 465.344 259.456 490.24 259.456zM261.952 349.76c-24.896 0-45.12-20.224-45.12-45.12 0-24.96 20.16-45.184 45.12-45.184 24.96 0 45.184 20.224 45.184 45.184C307.136 329.536 286.912 349.76 261.952 349.76z"
+                  p-id="2429"></path>
+              </svg></a>
+            <a href="#"><svg t="1684542355558" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="10216" width="128" height="128">
+                <path
+                  d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"
+                  p-id="10217"></path>
+              </svg></a>
+            <a href="https://www.cnblogs.com/tangjielin/" target="_blank"><svg t="1684542634706" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="19492" width="128" height="128">
+                <path
+                  d="M299.53819716 723.95386c18.82370139 18.77278235 30.28284818 44.28171158 30.37350875 72.66691391-0.0919021 28.34049343-11.54980735 53.8481799-30.28284819 72.5352715l-0.0919021 0.02235505c-18.72807344 18.70447806-44.41583828 30.14375409-72.91157193 30.14375409-28.54168409 0-54.09656377-11.48025909-72.87058766-30.16610914-18.68709038-18.68584884-30.23565619-44.17242302-30.23565619-72.5352715 0-28.38520233 11.5485646-53.94008201 30.23565619-72.69051051l0 0.02235506c18.7740251-18.68584884 44.32890356-30.23441343 72.87058766-30.23441344C255.12360042 693.71944656 280.81012251 705.26801116 299.53819716 723.95386zM299.53819716 723.93150495l0 0.02235505 0 0L299.53819716 723.93150495zM153.75603758 869.17840046l0-0.02235505c-0.04595044 0-0.04595044 0-0.04595044 0L153.75603758 869.17840046zM123.60731489 387.68309407l0 148.27965039c96.77247951 0.0683055 188.42081811 38.10815363 256.87515682 106.73884485 68.59094972 68.42950178 106.40849488 160.1386942 106.58608894 257.29244031l0 0 0 0.26452757 148.99623556 0c-0.13288516-141.29760514-57.57640886-269.24338623-150.42567888-362.13115623C392.83579897 445.23466479 264.84530896 387.75139957 123.60731489 387.68309407zM123.83086061 123.56881613l0 148.23494147c346.11293935 0.24714111 627.42401175 282.02020469 627.73945716 628.45604235l148.64104744 0c-0.0919021-214.0787762-87.1414303-408.06585564-227.75225701-548.82943825C531.79984676 210.73011719 337.89349069 123.65947548 123.83086061 123.56881613z"
+                  p-id="19493"></path>
+              </svg></a>
+            <a href="#"><svg t="1684542523285" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="15754" width="128" height="128">
+                <path
+                  d="M512 1024C229.234 1024 0 794.766 0 512S229.234 0 512 0s512 229.234 512 512-229.234 512-512 512z m259.157-568.889l-290.759 0.014c-13.966 0-25.287 11.321-25.287 25.273l-0.028 63.218c0 13.966 11.306 25.287 25.273 25.287H657.38c13.966 0 25.287 11.307 25.287 25.273v12.644a75.847 75.847 0 0 1-75.847 75.847H366.606a25.287 25.287 0 0 1-25.287-25.273v-240.2a75.847 75.847 0 0 1 75.847-75.846l353.92-0.015c13.966 0 25.273-11.306 25.287-25.273l0.071-63.189c0-13.966-11.306-25.287-25.272-25.301l-353.992 0.014c-104.718-0.014-189.624 84.892-189.624 189.61v353.963c0 13.967 11.32 25.287 25.287 25.287h372.935c94.265 0 170.666-76.401 170.666-170.666v-145.38c0-13.952-11.32-25.273-25.287-25.273z"
+                  p-id="15755"></path>
+              </svg></a>
           </div>
         </div>
       </div>
+      <el-image-viewer v-if="showViewer" :on-close="closeViewer" :url-list="srcList" />
     </div>
   </el-card>
 </template>
 
 <script>
-
+import ElImageViewer from 'element-ui/packages/image/src/image-viewer'
 export default {
-  data(){
-    return{
-      user:{
-          activeTab: 'activity',
-          name: 'welt',
-          avatar: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/avatars/v2-29c615a14037b9898e3641f5523e8ca2_720w.webp',
-      }
+  components: { ElImageViewer },
+  data() {
+    return {
+      showViewer: false,
+      srcList: [
+        'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/qr_code/wx_qrcode.png',]
     }
   },
   props: {
-    userinfo: {
+    user: {
       type: Object,
-      default: () => {
+      default: function () {
         return {
-          activeTab: '',
           name: 'welt',
-          avatar: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/headers/v2-29c615a14037b9898e3641f5523e8ca2_720w.webp',
+          avatar: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/avatars/v2-e1c0cd5aebfa62318f12b1295d7004f5_r.jpg',
         }
       }
+    }
+  },
+  methods: {
+    onPreview() {
+      this.$message({
+        message: 'V我50看看实力！',
+        type: 'success',
+        duration: 5 * 1000
+      })
+      this.showViewer = true
+    },
+    // 关闭查看器
+    closeViewer() {
+      this.showViewer = false
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.clearfixC{
+  font-weight: bold;
+    color: rgba(0, 0, 0, 0.9);
+}
+  
 .box-center {
   margin: 0 auto;
   display: table;
@@ -95,24 +129,6 @@ export default {
   .box-center {
     padding-top: 10px;
   }
-
-  .user-role {
-    padding-top: 10px;
-    font-weight: 400;
-    font-size: 14px;
-  }
-
-  .box-social {
-    padding-top: 30px;
-
-    .el-table {
-      border-top: 1px solid #dfe6ec;
-    }
-  }
-
-  .user-follow {
-    padding-top: 20px;
-  }
 }
 
 .user-bio {
@@ -124,7 +140,7 @@ export default {
   }
 
   .user-bio-section {
-    font-size: 14px;
+    font-size: 16px;
     padding: 15px 0;
 
     .user-bio-section-header {
@@ -132,6 +148,43 @@ export default {
       padding-bottom: 10px;
       margin-bottom: 10px;
       font-weight: bold;
+    }
+  }
+}
+
+.card-social {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+  svg {
+    fill: rgb(165, 181, 206);
+    width: 20px;
+    display: block;
+    transition: 0.3s;
+  }
+
+  a {
+    color: #8797a1;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    background-color: rgba(93, 133, 193, 0.05);
+    border-radius: 50%;
+    margin-left: 12px;
+
+    &:hover {
+      svg {
+        fill: darken(rgb(165, 181, 206), 20%);
+      }
+    }
+
+    &:first-child {
+      margin-left: 0;
     }
   }
 }
