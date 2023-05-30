@@ -32,10 +32,12 @@
 import AMapLoader from '@amap/amap-jsapi-loader';
 
 import { mapState } from 'vuex'
-import mapConfig from "../../mapConfig";
+//import mapConfig from "../../mapConfig";
 import Weather from '@/components/Weather.vue';
 import Header from '@/components/Header.vue';
 import RouteCard from '@/components/RouteCard.vue';
+import mapConfig from '@/utils/mapConfig'
+
 
 let AMap = null;
 
@@ -219,7 +221,7 @@ export default {
         initmap() {
             this.contentHeight = window.innerHeight
             AMapLoader.load({
-                key: mapConfig.appId, // 开发应用的 ID
+                key: mapConfig.JSAPIKey, // 开发应用的 ID
                 version: "2.0",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
                 plugins: [
                     'AMap.ToolBar', // 缩放按钮

@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name:'WebHeader',
   data() {
     return {
       test: [

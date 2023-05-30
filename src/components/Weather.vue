@@ -13,9 +13,11 @@
     </div>
 </template>
 <script>
+import mapConfig from '@/utils/mapConfig'
+
+
 export default {
-    // eslint-disable-next-line vue/multi-word-component-names
-    name: 'Weather',
+    name: 'WeatherCard',
     data() {
         return {
             adcode: '',
@@ -34,7 +36,7 @@ export default {
         adcode() {        //当adcode发生变化时，重新请求该地天气
             this.$axios.get('https://restapi.amap.com/v3/weather/weatherInfo?parameters', {
                 params: {
-                    key: '647b17e5508e7ae00b122df635fa4e25',        //需要操作
+                    key: mapConfig.WebAPIKey,        //需要操作
                     city: this.adcode,
                     extensions: 'base'
                 }
@@ -87,7 +89,7 @@ export default {
         getIp() {
             this.$axios.get('https://restapi.amap.com/v3/ip?parameters', {
                 params: {
-                    key: '647b17e5508e7ae00b122df635fa4e25'        //需要操作
+                    key: mapConfig.WebAPIKey        //需要操作
                 }
             }).then(
                 response => {

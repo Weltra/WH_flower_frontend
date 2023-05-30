@@ -71,8 +71,11 @@
 <script>
 import { axiosMap } from "@/requests/axios.js";
 import AMapLoader from '@amap/amap-jsapi-loader';
-import mapConfig from "../../mapConfig";
+//import mapConfig from "../../mapConfig";
 import Header from '@/components/Header.vue';
+import mapConfig from "@/utils/mapConfig";
+
+
 let AMap = null;
 export default {
   components: { Header },
@@ -143,7 +146,7 @@ export default {
     //创建地图
     createMap() {
       AMapLoader.load({
-        key: mapConfig.appId,
+        key: mapConfig.JSAPIKey,
         version: "2.0",
         plugins: ['AMap.Walking'
         ],
@@ -168,7 +171,7 @@ export default {
     //搜索地点
     searchLocation() {
       let data = {
-        key: "647b17e5508e7ae00b122df635fa4e25",
+        key: mapConfig.WebAPIKey,
         location: "113.40135612,23.0855435", //以此坐标搜索周边
         keywords: this.form.location, //关键字
       };
@@ -179,7 +182,7 @@ export default {
     // 周边搜索
     searchAround(types) {
       let data = {
-        key: "647b17e5508e7ae00b122df635fa4e25",
+        key: mapConfig.WebAPIKey,
         location: this.form.chooseLocation.location, //以此坐标搜索周边
         types, //默认为风景
       };
@@ -213,7 +216,7 @@ export default {
     //路线规划
     pathPlanning() {
       let data = {
-        key: "647b17e5508e7ae00b122df635fa4e25",
+        key: mapConfig.WebAPIKey,
         origin: this.form.coordinate, //出发点
         destination: this.form.targetCoordinate, //目标点
       };

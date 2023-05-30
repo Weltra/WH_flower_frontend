@@ -46,6 +46,7 @@
 <script>
 import Header from '@/components/Header.vue';
 import ImageUploader from '@/components/ImageUpload.vue'
+import oss from '@/utils/ossConfig';
 
 export default {
     components: { Header, ImageUploader },
@@ -71,12 +72,7 @@ export default {
                 flower_class: ''
             },
             avatar: '',
-            options_OSS: {
-                region: 'oss-cn-hangzhou',
-                accessKeyId: 'LTAI5tFQrt6TNg6k2SoRtnmW',
-                accessKeySecret: 'arpTCv67LVeoOy2CP8sZqF4DCOOBk6',
-                bucket: 'picture-tjl'
-            },
+            options_OSS: oss.options_OSS
         }
     },
     methods: {

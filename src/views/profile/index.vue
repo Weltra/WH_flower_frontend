@@ -75,6 +75,8 @@ import Account from './components/Account'
 import Header from '@/components/Header'
 import AvatarUploader from '@/components/AvatarUpload.vue'
 import clip from '@/utils/clipboard'
+import oss from '@/utils/ossConfig'
+
 
 export default {
   name: 'ProFile',
@@ -90,12 +92,7 @@ export default {
       ],
       user: {},
       activeTab: 'activity',
-      options_OSS: {
-        region: 'oss-cn-hangzhou',
-        accessKeyId: 'LTAI5tFQrt6TNg6k2SoRtnmW',
-        accessKeySecret: 'arpTCv67LVeoOy2CP8sZqF4DCOOBk6',
-        bucket: 'picture-tjl'
-      },
+      options_OSS: oss.options_OSS,
       avatar: '',
       tableShow: true,
       inputData: '',

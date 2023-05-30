@@ -26,9 +26,10 @@
 
 import AMapLoader from '@amap/amap-jsapi-loader';
 
-import mapConfig from "../../mapConfig";
+//import mapConfig from "../../mapConfig";
 import Header from '@/components/Header.vue';
 import MapCard from '@/components/MapCard.vue';
+import mapConfig from '@/utils/mapConfig'
 
 let AMap = null;
 //let self = null;
@@ -96,7 +97,7 @@ export default {
             this.contentHeight = window.innerHeight;
             //self = this;
             AMapLoader.load({
-                key: mapConfig.appId,
+                key: mapConfig.JSAPIKey,
                 version: "2.0",
                 plugins: [
                     "AMap.ToolBar",
