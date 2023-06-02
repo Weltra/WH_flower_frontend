@@ -34,8 +34,8 @@ export default {
   },
   created(){
     this.$axios.get('http://127.0.0.1:8000/users/' + sessionStorage['UserID']).then((res) => {
-            this.name = res.data.name;
-            this.email = res.data.email;
+            this.u_user.name = res.data.name;
+            this.u_user.email = res.data.email;
             this.password = res.data.hashed_password;
         }).catch(err => {
             console.log(err);
@@ -54,8 +54,6 @@ export default {
         this.$message.error('两次输入的密码应一致！');
       }
       else {
-        this.u_user.name = this.user.name
-        this.u_user.email = this.user.email
         this.u_user.password = this.password
         console.log(localStorage['UserID'])
         this.$axios.post('http://127.0.0.1:8000/update_user_info/' + sessionStorage['UserID'], this.u_user).then((res) => {
