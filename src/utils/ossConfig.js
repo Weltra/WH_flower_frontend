@@ -1,8 +1,8 @@
 export default {
     options_OSS: {
-        region: '你的OSS地区',
-        accessKeyId: '你的Key',
-        accessKeySecret: '你的密码',
-        bucket: '你的bucket名称'
+        region: 'oss-cn-hangzhou',
+        accessKeyId: 'LTAI5tFQrt6TNg6k2SoRtnmW',
+        accessKeySecret: 'arpTCv67LVeoOy2CP8sZqF4DCOOBk6',
+        bucket: 'picture-tjl'
     },
 }
