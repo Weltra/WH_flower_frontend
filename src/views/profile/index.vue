@@ -147,7 +147,7 @@ export default {
     },
     changeavatar() {
       this.$axios.post('http://127.0.0.1:8000/update_user_avatar/', {
-        email: this.email,
+        email: localStorage['email'],
         avatar: this.inputData
       }).then((res) => {
         if (res.data.code == '0000') {
