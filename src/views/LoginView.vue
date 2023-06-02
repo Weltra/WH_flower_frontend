@@ -100,7 +100,7 @@ export default {
             localStorage.setItem('password', res.data.hashed_password);
             localStorage.setItem('email', res.data.email);
             localStorage.setItem('avatar', res.data.avatar);
-            localStorage.setItem('UserID', res.data.ID);
+            sessionStorage.setItem('UserID', res.data.id);
             sessionStorage.setItem('s', 'true');
             this.$message({
               message: '登录成功！',

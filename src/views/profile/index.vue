@@ -21,7 +21,7 @@
                     <activity />
                   </el-tab-pane>
                   <el-tab-pane label="账户设置" name="account">
-                    <account :user="user" />
+                    <account/>
                   </el-tab-pane>
                   <el-tab-pane label="头像设置" name="change_avatar">
                     <div class="avatar-change">
@@ -53,6 +53,17 @@
                               @click="handleCopy(inputData, $event)">
                               点击复制到剪切板
                             </el-button>
+                          </div>
+                        </div>
+
+                        <div class="avatar-change-section">
+                          <div class="avatar-change-section-header"><span><i
+                                class="el-icon-document-checked"></i>Submit</span></div>
+                          <div class="avatar-change-section-body">
+                            <div class="text-muted">
+                              点击下方按钮，提交更改到数据库：
+                            </div>
+                            <el-button style="margin-left: 5px;" type="primary" @click="changeavatar">提交到数据库</el-button>
                           </div>
                         </div>
                       </div>
@@ -121,7 +132,6 @@ export default {
       this.$nextTick(function () {
         this.tableShow = true
       })
-
     },
     deleteAvatar() {
     },
@@ -133,6 +143,25 @@ export default {
         message: '复制成功！',
         type: 'success',
         duration: 1500
+      })
+    },
+    changeavatar() {
+      this.$axios.post('http://127.0.0.1:8000/update_user_avatar/', {
+        email: this.email,
+        avatar: this.inputData
+      }).then((res) => {
+        if (res.data.code == '0000') {
+          this.$message({
+            message: '用户头像更新成功！',
+            type: 'success'
+          });
+        }
+        else if (res.data.code == '0001') {
+          this.$message.error('参数错误，用户头像更新失败！');
+        }
+      }).catch(err => {
+        console.log(err);
+        this.$message.error('用户头像更新失败！');
       })
     }
   }
@@ -167,7 +196,7 @@ body {
   }
 
   .avatar-change-section {
-    padding: 15px 0;
+    padding: 5px 0;
 
     .avatar-change-section-header {
       border-bottom: 1px solid #dfe6ec;

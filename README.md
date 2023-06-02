@@ -27,8 +27,3 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-高德地图APIKey的设置
-
-
-阿里云OSSKey的设置
