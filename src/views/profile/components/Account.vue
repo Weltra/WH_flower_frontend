@@ -1,10 +1,10 @@
 <template>
   <el-form>
     <el-form-item label="用户名">
-      <el-input v-model.trim="user.name" />
+      <el-input v-model.trim="u_user.name" />
     </el-form-item>
     <el-form-item label="电子邮箱">
-      <el-input v-model.trim="user.email" />
+      <el-input v-model.trim="u_user.email" />
     </el-form-item>
     <el-form-item label="更改密码">
       <el-input v-model.trim="password" />
@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name:'AccountView',
   data() {
     return {
       confirm_password: '',
@@ -31,16 +32,15 @@ export default {
       }
     }
   },
-  props: {
-    user: {
-      type: Object,
-      default: () => {
-        return {
-          name: '',
-          email: '',
-        }
-      }
-    }
+  created(){
+    this.$axios.get('http://127.0.0.1:8000/users/' + sessionStorage['UserID']).then((res) => {
+            this.name = res.data.name;
+            this.email = res.data.email;
+            this.password = res.data.hashed_password;
+        }).catch(err => {
+            console.log(err);
+            this.$message.error('数据载入失败，请检查网络！');
+        })
   },
   methods: {
     submit() {
@@ -58,13 +58,13 @@ export default {
         this.u_user.email = this.user.email
         this.u_user.password = this.password
         console.log(localStorage['UserID'])
-        this.$axios.post('http://127.0.0.1:8000/update_user_info/' + localStorage['UserID'], this.u_user).then((res) => {
+        this.$axios.post('http://127.0.0.1:8000/update_user_info/' + sessionStorage['UserID'], this.u_user).then((res) => {
           if (res.data.code == '0000') {
             this.$message({
               message: '用户信息更新成功！',
               type: 'success'
             });
-            this.$axios.get('http://127.0.0.1:8000/users/' + localStorage['UserID']).then((res) => {
+            this.$axios.get('http://127.0.0.1:8000/users/' + sessionStorage['UserID']).then((res) => {
               this.user.name = res.data.name;
               this.user.email = res.data.email;
               this.password = res.data.hashed_password;
