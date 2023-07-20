@@ -63,8 +63,8 @@ export default {
               type: 'success'
             });
             this.$axios.get('http://127.0.0.1:8000/users/' + sessionStorage['UserID']).then((res) => {
-              this.user.name = res.data.name;
-              this.user.email = res.data.email;
+              this.u_user.name = res.data.name;
+              this.u_user.email = res.data.email;
               this.password = res.data.hashed_password;
             }).catch(err => {
               console.log(err);

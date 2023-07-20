@@ -147,7 +147,7 @@ export default {
 
 .active .lower {
     border-top: none;
-    transform: translateY(300px);
+    transform: translateY(350px);
     transition-delay: 0s;
 }
 
@@ -196,7 +196,7 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    height: 300px;
+    height: 350px;
     padding: 20px;
     position: absolute;
     top: 40px;

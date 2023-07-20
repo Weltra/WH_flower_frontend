@@ -54,8 +54,8 @@ export default {
         return {
             routelist: [
                 { route: '/Home', name: '主页' },
-                { route: '/Search', name: '搜索' },
-                { route: '/Map', name: '地图' },
+                { route: '/Search', name: '热门搜索' },
+                { route: '/Map', name: '赏花地图' },
                 { route: '/MapSearch', name: '周边搜索' },
                 { route: '/Route', name: '路线展示' },
                 { route: '/User', name: '个人中心' }

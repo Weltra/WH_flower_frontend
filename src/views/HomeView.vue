@@ -7,12 +7,12 @@
         </div>
         <nav>
           <ul class="menu" role="list" style="list-style-type:none">
-            <li><router-link to="/Search"><a>搜索</a></router-link></li>
-            <li><router-link to="/Map"><a>地图</a></router-link></li>
+            <li><router-link to="/Search"><a>热门搜索</a></router-link></li>
+            <li><router-link to="/Map"><a>赏花地图</a></router-link></li>
             <li><router-link to="/MapSearch"><a>周边搜索</a></router-link></li>
             <li><router-link to="/Feedback"><a>我的发现</a></router-link></li>
             <li><router-link to="/Route"><a>路线展示</a></router-link></li>
-            <li><router-link to="/User"><a>用户中心</a></router-link></li>
+            <li><router-link to="/User"><a>个人中心</a></router-link></li>
           </ul>
         </nav>
       </header>

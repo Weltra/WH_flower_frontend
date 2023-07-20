@@ -41,7 +41,7 @@ export default {
         return {
             routelist: [
                 { route: '/Home', name: '主页' },
-                { route: '/Search', name: '搜索' },
+                { route: '/Search', name: '热门搜索' },
                 { route: '/MapSearch', name: '周边搜索' },
                 { route: '/Feedback', name: '我的发现' },
                 { route: '/Route', name: '路线展示' },
@@ -77,13 +77,6 @@ export default {
             this.$router.push({ name: 'MapSearch' });
             this.$store.commit('updateData', this.pointname)
         }
-        this.$axios.get('http://127.0.0.1:8000/map_points/', {
-        }).then((res) => {
-            this.points = res.data.Points
-        }).catch(err => {
-            console.log(err);
-            this.$message.error('地图点载入失败，请检查网络！');
-        })
     },
     computed: {},
     mounted() {
@@ -94,47 +87,52 @@ export default {
     },
     methods: {
         initmap() {
-            this.contentHeight = window.innerHeight;
-            //self = this;
-            AMapLoader.load({
-                key: mapConfig.JSAPIKey,
-                version: "2.0",
-                plugins: [
-                    "AMap.ToolBar",
-                    "AMap.Scale",
-                    "AMap.Geolocation",
-                    "AMap.PlaceSearch",
-                    "AMap.AutoComplete"
-                ],
-            }).then(map => {
-                AMap = map;
-                this.map = new AMap.Map("container", {
-                    //center: MY_POSITION,
-                    zoom: 11
+            this.$axios.get('http://127.0.0.1:8000/map_points/', {
+            }).then((res) => {
+                this.points = res.data.Points
+                this.contentHeight = window.innerHeight;
+                AMapLoader.load({
+                    key: mapConfig.JSAPIKey,
+                    version: "2.0",
+                    plugins: [
+                        "AMap.ToolBar",
+                        "AMap.Scale",
+                        "AMap.Geolocation",
+                        "AMap.PlaceSearch",
+                        "AMap.AutoComplete"
+                    ],
+                }).then(map => {
+                    AMap = map;
+                    this.map = new AMap.Map("container", {
+                        zoom: 11
+                    });
+                    this.map.addControl(new AMap.Scale());
+                    this.map.addControl(new AMap.ToolBar());
+                    // 定位
+                    let geolocation = new AMap.Geolocation({
+                        // 是否使用高精度定位，默认：true
+                        enableHighAccuracy: true,
+                        // 设置定位超时时间，默认：无穷大
+                        timeout: 10000,
+                        // 定位按钮的停靠位置的偏移量，默认：Pixel(10, 20)
+                        buttonOffset: new AMap.Pixel(10, 20),
+                        //  定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                        zoomToAccuracy: false,
+                        //  定位按钮的排放位置,  RB表示右下
+                        buttonPosition: "RB"
+                    });
+                    geolocation.getCurrentPosition(this.setMapMakers);
+                    this.mapSearchInit();
+                    this.loadAMapMarker();
+                    this.map.setFitView();
+                }).catch(e => {
+                    console.log(e);
                 });
-                this.map.addControl(new AMap.Scale());
-                this.map.addControl(new AMap.ToolBar());
-                // 定位
-                let geolocation = new AMap.Geolocation({
-                    // 是否使用高精度定位，默认：true
-                    enableHighAccuracy: true,
-                    // 设置定位超时时间，默认：无穷大
-                    timeout: 10000,
-                    // 定位按钮的停靠位置的偏移量，默认：Pixel(10, 20)
-                    buttonOffset: new AMap.Pixel(10, 20),
-                    //  定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-                    zoomToAccuracy: false,
-                    //  定位按钮的排放位置,  RB表示右下
-                    buttonPosition: "RB"
-                });
-                geolocation.getCurrentPosition(this.setMapMakers);
-                this.mapSearchInit();
-                this.loadAMapMarker();
-                this.map.setFitView();
-            }).catch(e => {
-                console.log(e);
-            });
-            // 搜索
+                // 搜索
+            }).catch(err => {
+                console.log(err);
+                this.$message.error('地图点载入失败，请检查网络！');
+            })
         },
         // 设置地图中心点：用户坐标
         setMapMakers(status, res) {
@@ -155,10 +153,10 @@ export default {
                 autoRotation: true,
                 offset: AMap.Pixel(-15, -30),
                 icon: new AMap.Icon({ // 设置起点的图标
-                        size: new AMap.Size(30, 30),
-                        image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/Home.png',
-                        imageSize: new AMap.Size(30, 30),
-                    }),
+                    size: new AMap.Size(30, 30),
+                    image: 'https://picture-tjl.oss-cn-hangzhou.aliyuncs.com/WuHan_Flower/Home.png',
+                    imageSize: new AMap.Size(30, 30),
+                }),
                 map: map
             });
             this.markers.push(marker);
@@ -199,6 +197,16 @@ export default {
             this.map.setFitView();
             this.markerList.push(marker);
         },
+        getmarkers() {
+            this.$axios.get('http://127.0.0.1:8000/map_points/', {
+            }).then((res) => {
+                this.points = res.data.Points
+            }).catch(err => {
+                console.log(err);
+                this.$message.error('地图点载入失败，请检查网络！');
+            })
+        },
+
         addMarkerTip(e) {
             let data = e.target.getExtData();
             this.pointname = data.name
@@ -296,7 +304,8 @@ export default {
             });
         },
     },
-    watch: {},
+    watch: {
+    },
     beforeDestroy() {
         this.map.destroy();
         this.map = null;

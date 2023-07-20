@@ -27,7 +27,7 @@
         <div class="user-bio-section-header"><span>About Us</span></div>
         <div class="user-bio-section-body">
           <div class="text-muted">
-            使用VUE+FastAPI开发系统，集成了高德地图的JSAPI和WebAPI，并且使用阿里云OSS存储图片。
+            使用VUE+FastAPI开发的系统，集成了高德地图的JSAPI和WebAPI，并且使用阿里云OSS存储图片。
           </div>
           <div class="card-social">
             <a @click="onPreview"><svg t="1684542118005" class="icon" viewBox="0 0 1024 1024" version="1.1"

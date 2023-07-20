@@ -43,13 +43,13 @@ export default {
             }).then(
                 response => {
                     let lives = response.data.lives[0]
+                    console.log(lives)
                     this.weather = lives.weather
                     this.temperature = lives.temperature
                     this.winddirection = lives.winddirection
                     this.windpower = lives.windpower
                     this.humidity = lives.humidity
                     this.address = lives.city
-
                     localStorage.setItem('adcode', this.adcode)    //将存储目前查询的天气
                 },
                 error => {
@@ -95,19 +95,16 @@ export default {
                 response => {
                     this.ipAddress = `${response.data.province}${response.data.city}`
                     this.ipAdCode = response.data.adcode
-
-                    if (!(localStorage.getItem('adcode'))) {
-                        this.adcode = response.data.adcode
-                    }
+                    console.log(this.ipAdCode)
+                    console.log(this.ipAddress)
+                    this.adcode = response.data.adcode
                 }
             )
         }
     },
     mounted() {
-        if (localStorage.getItem('adcode')) {            //取出本地存储的地址，若不存在，则使用ip地址
-            this.adcode = localStorage.getItem('adcode')
-        }
         this.getIp()
+        this.useIp()
     },
 }
 </script>

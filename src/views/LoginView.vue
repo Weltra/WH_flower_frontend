@@ -142,7 +142,7 @@ export default {
               message: '注册成功！',
               type: 'success'
             });
-            this.$router.replace('/Home');
+            //this.$router.replace('/Home');
         }).catch(err => {
           console.log(err);
           this.$message.error('邮箱已经注册！');

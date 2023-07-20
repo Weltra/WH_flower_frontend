@@ -9,10 +9,10 @@
         <div class="site-title" style="font-size: 18px;">{{ this.name }}</div>
         <ul>
           <li><router-link to="/Home"><a>主页</a></router-link></li>
-          <li><router-link to="/Map"><a>地图</a></router-link></li>
+          <li><router-link to="/Map"><a>赏花地图</a></router-link></li>
           <li><router-link to="/MapSearch">周边搜索<a></a></router-link></li>
           <li><router-link to="/Route"><a>游览路线</a></router-link></li>
-          <li><router-link to="/User"><a>用户中心</a></router-link></li>
+          <li><router-link to="/User"><a style="font-size: 18px;"><i class="el-icon-user-solid"></i></a></router-link></li>
         </ul>
       </nav>
     </header>

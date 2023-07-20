@@ -71,7 +71,6 @@
 <script>
 import { axiosMap } from "@/requests/axios.js";
 import AMapLoader from '@amap/amap-jsapi-loader';
-//import mapConfig from "../../mapConfig";
 import Header from '@/components/Header.vue';
 import mapConfig from "@/utils/mapConfig";
 
@@ -83,8 +82,8 @@ export default {
     return {
       routelist: [
         { route: '/Home', name: '主页' },
-        { route: '/Search', name: '搜索' },
-        { route: '/Map', name: '地图' },
+        { route: '/Search', name: '热门搜索' },
+        { route: '/Map', name: '赏花地图' },
         { route: '/Feedback', name: '我的发现' },
         { route: '/Route', name: '路线展示' },
         { route: '/User', name: '个人中心' }
@@ -116,7 +115,6 @@ export default {
   mounted() {
     // 创建地图
     this.createMap();
-
   },
   methods: {
     //选择初始坐标
