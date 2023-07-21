@@ -1,8 +1,7 @@
 .DS_Store
 node_modules
 /dist
-/src/utils/mapConfig.js
-/src/utils/ossConfig.js
+
 
 
 # local env files
@@ -23,3 +22,4 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+src/utils/ossConfig.js
